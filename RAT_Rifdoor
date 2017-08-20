@@ -1,0 +1,39 @@
+rule RAT_Rifdoor
+{
+	meta:
+		author = "Ashley"
+		description = "this rule try to match the stirngs encoded by xor 0F discovered in Rifdoor"
+		hash0 = "275b7af66726950a895fbd74c6227cab"
+		date = "2017/08/20"
+
+	strings:
+
+		$encoded_string_1 = "+fa{j}ync"                                     
+		$encoded_string_2 = "Fa{j}ync/f|/|j{/{`"                           
+		$encoded_string_3 = "%s %d min\\r\\n"                                 
+		$encoded_string_4 = "+k`xac`nkjwjl"                                 
+		$encoded_string_5 = "K`xac`nk/infcz}j"                              
+		$encoded_string_6 = "K`xac`nk/|zllj||"                              
+		$encoded_string_7 = "Jwjlz{f`a/infcz}j"                             
+		$encoded_string_8 = "Jwjlz{f`a/|zllj||"                             
+		$encoded_string_9 = "+jwjl"                                         
+		$encoded_string_10 = "+k`xac`nk"                                     
+		$encoded_string_11 = "\\`i{xn}jSBfl}`|`i{SXfak`x|SLz}}ja{Yj}|f`aS]za"
+		$encoded_string_12 = "gfl|"                                          
+		$encoded_string_13 = "L5S_}`h}nbKn{nSH}n"                            
+		$encoded_string_14 = "gfl|"                                          
+		$encoded_string_15 = "L5S_}`h}nbKn{nSH}n"                            
+		$encoded_string_16 = "gfl|Shzfiw!jwj"                              
+		$encoded_string_17 = "L5S_}`h}nb/Ifcj|SL`bb`a/Ifcj|SH}n"             
+		$encoded_string_18 = "gfl|"                                          
+		$encoded_string_19 = "L5S_}`h}nb/Ifcj|SL`bb`a/Ifcj|SH}n"             
+		$encoded_string_20 = "gfl|Shzfiw!jwj"                                
+		$encoded_string_21 = "l5Sxfak`x|S|v|{jb<=Slbk!jwj"
+
+
+	condition:
+		uint16(0) == 0x5A4D 
+		and
+		(20 of ($encoded_string_*))
+
+}
